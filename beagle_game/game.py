@@ -1,6 +1,8 @@
+from .lightmap import Lightmap
+
 class game():
     def __init__(self):
-        pass
+        self.lightmap = Lightmap()
 
     def init(self):
         pass
@@ -9,7 +11,7 @@ class game():
         pass
 
     def render(self):
-        pass
+        self.lightmap.render()
 
     def finalize(self):
         pass
