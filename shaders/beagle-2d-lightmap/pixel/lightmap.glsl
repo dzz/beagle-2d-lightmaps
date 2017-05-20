@@ -18,12 +18,12 @@ float RayToLineSegment(float x, float y, float dx, float dy, float x1, float y1,
             s = (((y - y1) * dx) - (x - x1) * dy) / d;
             if (r >= 0 && s >= 0 && s <= 1)
             {
-                return length( vec2( dx,dy) ) * r;
+                return r;
                 //return { x: x + r * dx, y: y + r * dy };
             }
         }
     }
-    return 100000000.0;
+    return 1.0;
 }
 
 void main(void) {
@@ -33,15 +33,15 @@ void main(void) {
     vec2 line_a = vec2(-0.2,-0.4);
     vec2 line_b = vec2(0.2,0.1);
 
-    float dist_to_position = 1.0 - distance( position, mod_uv );
+    float dist_to_position = distance( position, mod_uv );
 
     float intersection_distance = RayToLineSegment( position.x, position.y, mod_uv.x - position.x, mod_uv.y - position.y, line_a.x, line_a.y, line_b.x, line_b.y);
 
-    float sees_player = 0.0;
-    if( intersection_distance < dist_to_position ) {
-        sees_player = 1.0;
+    float sees_player = 1.0;
+    if( intersection_distance < 1.0) {
+        sees_player = 0.0;
     } 
 
-    vec4 outputColor = vec4( intersection_distance, intersection_distance, sees_player, 1.0); 
+    vec4 outputColor = vec4( sees_player, intersection_distance, dist_to_position, 1.0);
     gl_FragColor = outputColor;
 }
