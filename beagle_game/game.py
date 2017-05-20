@@ -8,7 +8,7 @@ class game():
         pass
 
     def tick(self):
-        pass
+        self.lightmap.tick()
 
     def render(self):
         self.lightmap.render()
