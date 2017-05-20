@@ -42,6 +42,7 @@ void main(void) {
         sees_player = 0.0;
     } 
 
-    vec4 outputColor = vec4( sees_player, intersection_distance, dist_to_position, 1.0);
+    vec4 base_color = vec4( 0.5,0.3,0.8,1.0) * (0.5) + ((1.0-dist_to_position)/2.0);
+    vec4 outputColor = vec4( sees_player, sees_player, sees_player, 1.0) * base_color;
     gl_FragColor = outputColor;
 }
