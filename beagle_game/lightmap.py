@@ -13,7 +13,18 @@ class Lightmap():
         self.t = self.t + 0.01
 
     def render(self):
+        geometry = [
+            -0.5,-0.5,
+            0.5,-0.5,
+            -0.5,0.5,
+            0.5,0.5
+        ]
         with BGL.context.render_target( Lightmap.frame_buffer ):
-            Lightmap.primitive.render_shaded( Lightmap.shader, { "position" : [ sin(self.t+( cos(self.t*3)+1)), cos(self.t) ] })
+            Lightmap.primitive.render_shaded( Lightmap.shader, 
+                { 
+                    "position" : [ sin(self.t+( cos(self.t*3)+1)), cos(self.t) ],
+                    "geometry" : [ geometry ],
+                    "num_p"    : [ len(geometry) ]
+                })
         Lightmap.frame_buffer.render_processed( BGL.assets.get("beagle-2d/shader/passthru") )
     
