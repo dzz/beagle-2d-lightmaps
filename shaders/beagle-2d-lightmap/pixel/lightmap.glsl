@@ -43,6 +43,7 @@ void main(void) {
             float intersection_distance = RayToLineSegment( position.x, position.y, mod_uv.x - position.x, mod_uv.y - position.y, line_a.x, line_a.y, line_b.x, line_b.y);
             if( intersection_distance < 1.0) {
                     sees_player = 0.0;
+                    break;
             } 
     }
 
