@@ -2,9 +2,9 @@
 
 in vec2 uv;
 uniform vec2 position;
-
+uniform vec4 light_color;
 uniform int num_p;
-uniform float geometry[2048];
+uniform float geometry[512];
 
 float RayToLineSegment(float x, float y, float dx, float dy, float x1, float y1, float x2, float y2)
 {
@@ -47,8 +47,7 @@ void main(void) {
             } 
     }
 
-    vec4 base_color = vec4( 0.5,0.3,0.8,1.0) * (0.5) + ((1.0-dist_to_position)/2.0);
-    vec4 outputColor = vec4( sees_player, sees_player, sees_player, 1.0) * base_color;
+    vec4 outputColor = vec4( sees_player, sees_player, sees_player, 1.0) * light_color * (1.0-dist_to_position);
 
     gl_FragColor = outputColor;
 }
